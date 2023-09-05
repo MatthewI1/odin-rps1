@@ -1,3 +1,4 @@
+
 console.log("Hello World!");
 document.getElementById("rock").addEventListener("click", playRockGame);
 document.getElementById("paper").addEventListener("click", playPaperGame);
@@ -11,7 +12,7 @@ function getComputerChoice() {
     else if (num === 1) {
         return 'rock';
     } else {
-        return 'scissors'
+        return 'scissors';
     }
 }
 
@@ -46,9 +47,25 @@ function getResult(p1, p2) {
 function displayResult(string) {
     document.getElementById("result").innerText = string;
 }
+function winnerDisplay(string) {
+    document.getElementById("winnerDisplay").innerText = string;
+}
 
 let wins = 0;
 let loses = 0;
+function checkEnd() {
+    if (wins + loses < 5) {return;}
+    if (wins > loses) {
+        winnerDisplay("you won!")
+    } else if (loses > wins) {
+        winnerDisplay("you lost!")
+    } else {
+        winnerDisplay("its a draw!")
+    }
+
+}
+
+
 function playRockGame() {playGame("rock")};
 function playPaperGame() {playGame("paper")};
 function playScissorsGame() {playGame("scissors")};
@@ -65,12 +82,7 @@ function playGame(user_choice) {
     } else {
         displayResult("draw!");
     }
+    checkEnd() 
 }
 
-// if (wins > loses) {
-//     console.log("you won!")
-// } else if (loses > wins) {
-//     console.log("you lost!")
-// } else {
-//     console.log("its a draw!")
-// }
+
