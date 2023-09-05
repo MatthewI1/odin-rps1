@@ -1,5 +1,7 @@
 console.log("Hello World!");
-
+document.getElementById("rock").addEventListener("click", playRockGame);
+document.getElementById("paper").addEventListener("click", playPaperGame);
+document.getElementById("scissors").addEventListener("click", playScissorsGame);
 
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3);
@@ -41,33 +43,34 @@ function getResult(p1, p2) {
     }
 }
 
+function displayResult(string) {
+    document.getElementById("result").innerText = string;
+}
+
 let wins = 0;
 let loses = 0;
-function playGame() {
+function playRockGame() {playGame("rock")};
+function playPaperGame() {playGame("paper")};
+function playScissorsGame() {playGame("scissors")};
+function playGame(user_choice) {
     var pcChoice = getComputerChoice();
-    var userChoice = prompt("Please Choose:");
-    let result =  getResult(userChoice.toLowerCase(), pcChoice);
+    var userChoice = user_choice;
+    let result =  getResult(userChoice, pcChoice);
     if (result === 'win') {
-        console.log("you won!" + userChoice.toLowerCase() + " beat " + pcChoice);
+        displayResult("you won!" + userChoice.toLowerCase() + " beat " + pcChoice);
         wins++;
     } else if (result === 'lose') {
-        console.log("you lost." + userChoice.toLowerCase() + " loses to " + pcChoice);
+        displayResult("you lost." + userChoice.toLowerCase() + " loses to " + pcChoice);
         loses++;
     } else {
-        console.log("draw!");
+        displayResult("draw!");
     }
 }
 
-console.log("Starting 5 games!");
-playGame();
-playGame();
-playGame();
-playGame();
-playGame();
-if (wins > loses) {
-    console.log("you won!")
-} else if (loses > wins) {
-    console.log("you lost!")
-} else {
-    console.log("its a draw!")
-}
+// if (wins > loses) {
+//     console.log("you won!")
+// } else if (loses > wins) {
+//     console.log("you lost!")
+// } else {
+//     console.log("its a draw!")
+// }
